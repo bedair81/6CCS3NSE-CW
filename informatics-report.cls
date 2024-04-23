@@ -15,12 +15,21 @@
 \usepackage{lmodern}
 \renewcommand{\familydefault}{\rmdefault}
 
-\setcounter{secnumdepth}{2} %Section numbering depth
-\setcounter{tocdepth}{1} %Table of Contents depth, section only
+\setcounter{secnumdepth}{2} % Section numbering depth
+\setcounter{tocdepth}{1}    % Table of Contents depth, section only
 
-%Text
+% Text
 \usepackage{setspace}
 \doublespacing
+
+% Title settings
+\usepackage{titlesec}
+
+% Further reducing chapter title spacing
+\titlespacing*{\chapter}{0pt}{-30pt}{10pt} % Reduced both before and after spacing
+
+% Further reducing section title spacing
+\titlespacing*{\section}{0pt}{5pt}{5pt} % Reduced both before and after spacing
 
 \def\@title{}
 \def\@author{}
@@ -29,33 +38,33 @@
 
 \def\date#1{\gdef\@date{#1}}
 
-%Acknowledgements
+% Acknowledgements
 \newif\ifacknowledgements@
 \acknowledgements@false
 \def\ackFile#1{\gdef\@ackFile{#1}\acknowledgements@true}
 
 \def\createFrontMatter{
 
-	%Title Page
-            \thispagestyle{empty}
-	\newgeometry{top=0.8in}
-	\begin{center}
-		{\large
-			\begin{flushright}
-			      \includegraphics[scale=0.4]{FrontMatter/logo.png}\\*
-			\end{flushright}
-			\vspace*{2.2in}
-			{\huge \bf{\@title}}\\*
-			\vspace*{0.4in}
-			\Large{Project Report}\\*
-			\vspace*{1.2in}
-			\large{Authors: \@author\\*}
-			\vspace*{0.2in}
-			{\@date}\\*
-		}
-	\end{center}
-	\restoregeometry
-\setcounter{page}{0}	
+    % Title Page
+    \thispagestyle{empty}
+    \newgeometry{top=0.8in}
+    \begin{center}
+        {\large
+            \begin{flushright}
+                  \includegraphics[scale=0.4]{FrontMatter/logo.png}\\*
+            \end{flushright}
+            \vspace*{2.2in}
+            {\huge \bf{\@title}}\\*
+            \vspace*{0.4in}
+            \Large{Project Report}\\*
+            \vspace*{1.2in}
+            \large{Authors: \@author\\*}
+            \vspace*{0.2in}
+            {\@date}\\*
+        }
+    \end{center}
+    \restoregeometry
+    \setcounter{page}{0}   
 }
 
 \renewcommand{\bibname}{References}
