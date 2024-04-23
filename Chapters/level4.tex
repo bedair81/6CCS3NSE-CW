@@ -6,11 +6,11 @@ At this level, we implemented network defence mechanisms to mitigate the impact 
 To defend against the TCP SYN Flood attack with IP spoofing, we implemented the following firewall rules using \texttt{iptables}:
 
 \begin{verbatim}
-sudo \texttt{iptables} -A INPUT -p tcp --syn -m limit 
+sudo iptables -A INPUT -p tcp --syn -m limit 
 --limit 1/s --limit-burst 4 -j ACCEPT
-sudo \texttt{iptables} -A INPUT -p tcp --syn -j LOG 
+sudo iptables -A INPUT -p tcp --syn -j LOG 
 --log-prefix 'TCP SYN FLOOD DROPPED:' --log-level 4
-sudo \texttt{iptables} -A INPUT -p tcp --syn -j DROP
+sudo iptables -A INPUT -p tcp --syn -j DROP
 \end{verbatim}
 
 These rules limit the rate of incoming TCP SYN packets to 1 packet per second, with a burst limit of 4 packets. Any TCP SYN packets exceeding this limit are logged with a specific prefix and dropped. This configuration helps prevent the victim machines from being overwhelmed by the flood of SYN packets the attacker generates.
@@ -19,11 +19,11 @@ These rules limit the rate of incoming TCP SYN packets to 1 packet per second, w
 To mitigate the ICMP Flood attack, we applied the following \texttt{iptables} rules:
 
 \begin{verbatim}
-sudo \texttt{iptables} -A INPUT -p icmp --ICMP-type echo-request -m limit 
+sudo iptables -A INPUT -p icmp --ICMP-type echo-request -m limit 
 --limit 1/s --limit-burst 4 -j ACCEPT
-sudo \texttt{iptables} -A INPUT -p icmp --ICMP-type echo-request -j LOG 
+sudo iptables -A INPUT -p icmp --ICMP-type echo-request -j LOG 
 --log-prefix 'ICMP FLOOD DROPPED:' --log-level 4
-sudo \texttt{iptables} -A INPUT -p icmp --ICMP-type echo-request -j DROP
+sudo iptables -A INPUT -p icmp --ICMP-type echo-request -j DROP
 \end{verbatim}
 
 Similar to the TCP SYN Flood defence, these rules limit the rate of incoming ICMP echo request packets to 1 packet per second, with a burst limit of 4 packets. ICMP echo request packets exceeding this limit are logged and dropped, protecting the victim machines from being overwhelmed by the ICMP Flood attack.
