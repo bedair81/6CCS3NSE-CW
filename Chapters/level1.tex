@@ -2,3 +2,20 @@
 
 \section{Network Topology}
 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2.5cm]
+    \node (attacker) [draw, circle, fill=red!20, minimum size=2cm] {Attacker 192.168.96.183};
+    \node (victim1) [draw, circle, fill=blue!20, minimum size=2cm, below left=of attacker] {Victim 1 192.168.96.110};
+    \node (victim2) [draw, circle, fill=blue!20, minimum size=2cm, below right=of attacker] {Victim 2 192.168.109.157};
+    \draw [thick] (attacker) -- (victim1);
+    \draw [thick] (attacker) -- (victim2);
+    \draw [thick] (victim1) -- (victim2);
+    \end{tikzpicture}
+    \caption{Network Topology}\label{fig:NetworkTopology}
+\end{figure}
+
+\section{Connectivity Tests}
+
+The following screenshots show ICMP ping tests between each machine, showing that the machines are fully connected as shown in Figure~\ref{fig:NetworkTopology}.
+
